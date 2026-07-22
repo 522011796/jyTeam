@@ -1,0 +1,28 @@
+{
+  "name": "jy-team-test",
+  "version": "1.0.0",
+  "description": "Nuxt2 + Vue2 + ElementUI 测试项目",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/build-content.js && nuxt",
+    "build": "node scripts/build-content.js && nuxt build",
+    "build:content": "node scripts/build-content.js",
+    "start": "nuxt start",
+    "generate": "node scripts/build-content.js && nuxt generate"
+  },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "7777"
+    }
+  },
+  "dependencies": {
+    "nuxt": "^2.15.8",
+    "core-js": "^3.19.0",
+    "gsap": "^3.12.5",
+    "@nuxtjs/i18n": "^7.3.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/style-resources": "^1.2.1"
+  }
+}

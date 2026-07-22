@@ -1,0 +1,53 @@
+/*
+ * Design Tokens — 救援队 Digital Basecamp / Light Theme
+ */
+:root {
+  /* 主色调 */
+  --color-bg:         #FAFAF7;
+  --color-bg-alt:     #F0F0EB;
+  --color-bg-card:    #FFFFFF;
+  --color-bg-hover:   #EBEBE5;
+  --color-text:       #1A1A1A;
+  --color-text-muted: #6B6B6B;
+  --color-text-dim:   #A0A0A0;
+  --color-accent:     #1A1A1A;
+  --color-accent-alt: #444444;
+  --color-border:     rgba(0, 0, 0, 0.08);
+  --color-border-light: rgba(0, 0, 0, 0.12);
+
+  /* 间距 */
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   16px;
+  --space-lg:   24px;
+  --space-xl:   40px;
+  --space-2xl:  64px;
+  --space-3xl:  96px;
+  --space-4xl:  128px;
+
+  /* 容器宽度 */
+  --container-max:    1280px;
+  --container-narrow: 800px;
+  --container-wide:   1440px;
+
+  /* 圆角 */
+  --radius-sm:  2px;
+  --radius-md:  4px;
+  --radius-lg:  8px;
+
+  /* Z-Index */
+  --z-base:       1;
+  --z-content:    10;
+  --z-header:     100;
+  --z-menu:       200;
+  --z-overlay:    300;
+  --z-cursor:     400;
+
+  /* 动画 */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out:   cubic-bezier(0.77, 0, 0.175, 1);
+  --duration-fast:   300ms;
+  --duration-normal: 600ms;
+  --duration-slow:   900ms;
+  --duration-page:   1200ms;
+}

@@ -1,0 +1,57 @@
+/*
+ * ============================================================
+ * Page Transitions — 页面切换动画
+ * Nuxt 2 的 page transition 配合 CSS
+ * ============================================================
+ */
+
+/* 页面进入 */
+.page-enter-active {
+  transition: opacity var(--duration-page) var(--ease-out-expo),
+              transform var(--duration-page) var(--ease-out-expo);
+}
+
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* 页面离开 */
+.page-leave-active {
+  transition: opacity 400ms var(--ease-in-out);
+}
+
+.page-leave-to {
+  opacity: 0;
+}
+
+/* 全屏菜单过渡 */
+.menu-enter-active {
+  transition: opacity var(--duration-normal) var(--ease-out-expo),
+              clip-path var(--duration-normal) var(--ease-out-expo);
+}
+
+.menu-enter,
+.menu-leave-to {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+}
+
+/* 渐现通用 */
+.fade-enter-active {
+  transition: opacity var(--duration-normal) var(--ease-out-expo),
+              transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.fade-enter {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.fade-leave-active {
+  transition: opacity var(--duration-fast) var(--ease-in-out);
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
