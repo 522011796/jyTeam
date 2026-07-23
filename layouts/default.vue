@@ -1,5 +1,5 @@
 <template>
-  <div class="site-wrapper" :class="{ 'menu-is-open': menuOpen }">
+  <div class="site-wrapper public-site" :class="{ 'menu-is-open': menuOpen }">
     <SiteHeader />
     <FullscreenMenu />
     <main class="site-main">

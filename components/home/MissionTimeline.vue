@@ -117,8 +117,6 @@ export default {
   padding: 0 var(--space-xl);
 }
 
-
-
 .mission-quote {
   font-size: clamp(18px, 2.5vw, 26px);
   font-weight: 500;

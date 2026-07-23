@@ -22,10 +22,17 @@
       </div>
 
       <div class="header-center">
-        <div class="status-indicator">
-          <span class="status-dot"></span>
+        <div class="status-indicator" @click="handleSecretTap">
+          <span class="status-dot" :class="{ 'secret-ready': secretUnlocked }"></span>
           <span class="status-label">{{ $t('site.status_ready') }}</span>
         </div>
+        <a
+          v-if="secretUnlocked"
+          href="/admin"
+          target="_blank"
+          class="secret-admin-link"
+          title="管理后台"
+        >管理</a>
       </div>
 
       <div class="header-right">
@@ -48,13 +55,37 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 
+const SECRET_STORAGE_KEY = 'admin_secret_unlocked'
+const TAP_TARGET = 10
+const TAP_TIMEOUT_MS = 3000
+
 export default {
   name: 'SiteHeader',
+  data() {
+    return {
+      secretCount: 0,
+      secretTimer: null,
+      secretUnlocked: false
+    }
+  },
   computed: {
     ...mapGetters(['menuOpen'])
   },
   methods: {
     ...mapMutations(['toggleMenu', 'closeMenu']),
+    handleSecretTap() {
+      if (this.secretUnlocked) return
+      if (!process.client) return
+
+      clearTimeout(this.secretTimer)
+      this.secretCount++
+      this.secretTimer = setTimeout(() => { this.secretCount = 0 }, TAP_TIMEOUT_MS)
+
+      if (this.secretCount >= TAP_TARGET) {
+        this.secretUnlocked = true
+        localStorage.setItem(SECRET_STORAGE_KEY, '1')
+      }
+    },
     handleScroll() {
       if (!this.$refs.header) return
       if (window.scrollY > 50) {
@@ -66,9 +97,13 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll, { passive: true })
+    if (process.client && localStorage.getItem(SECRET_STORAGE_KEY)) {
+      this.secretUnlocked = true
+    }
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.handleScroll)
+    clearTimeout(this.secretTimer)
   }
 }
 </script>
@@ -176,6 +211,8 @@ export default {
   font-weight: 500;
   letter-spacing: 0.1em;
   color: var(--color-text-muted);
+  cursor: default;
+  user-select: none;
 }
 
 .status-dot {
@@ -186,9 +223,33 @@ export default {
   animation: status-pulse 2s ease-in-out infinite;
 }
 
+.status-dot.secret-ready {
+  background: #D32F2F;
+}
+
 @keyframes status-pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.2; }
+}
+
+/* Secret admin link */
+.secret-admin-link {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 16px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #D32F2F;
+  border: 1px solid #D32F2F;
+  text-decoration: none;
+  transition: background 200ms ease, color 200ms ease;
+}
+
+.secret-admin-link:hover {
+  background: #D32F2F;
+  color: #fff;
 }
 
 /* Menu toggle */
