@@ -168,13 +168,16 @@ export default {
   color: rgba(255, 255, 255, 0.12);
   letter-spacing: 0.05em;
 }
+
 .rescue-img__icon {
   font-size: clamp(28px, 4vw, 48px);
   color: rgba(255, 255, 255, 0.15);
 }
+
 .rescue-img--portrait .rescue-img__overlay {
   background: linear-gradient(to bottom, rgba(0,0,0,0.02) 40%, rgba(0,0,0,0.2) 100%);
 }
+
 .rescue-img--portrait .rescue-img__terrain {
   mask-image: radial-gradient(ellipse at 50% 30%, black 40%, transparent 80%);
 }

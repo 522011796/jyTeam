@@ -7,6 +7,11 @@ export default {
     port: 7777
   },
 
+  // 管理后台 API 中间件（仅 dev 模式生效）
+  serverMiddleware: [
+    { path: '/api', handler: '~/server-middleware/admin.js' }
+  ],
+
   head: {
     title: '全域救援 — Digital Basecamp',
     meta: [
@@ -28,7 +33,9 @@ export default {
   ],
 
   plugins: [
-    '@/plugins/gsap'
+    '@/plugins/gsap',
+    '@/plugins/api',
+    '@/plugins/xcar'
   ],
 
   modules: [

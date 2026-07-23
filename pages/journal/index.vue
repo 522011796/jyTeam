@@ -17,9 +17,6 @@
       >
         <div class="journal-article-image">
           <RescueImage :theme="entry.imageTheme || 'mountain'" />
-          <div class="journal-article-placeholder">
-            <span class="article-placeholder-num">#{{ entry.id }}</span>
-          </div>
         </div>
 
         <div class="journal-article-content">
@@ -124,23 +121,6 @@ export default {
 }
 
 .journal-article { text-decoration: none; color: inherit; display: block; }
-
-.journal-article-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    linear-gradient(135deg, rgba(223, 255, 0, 0.02) 0%, transparent 60%),
-    var(--color-bg-card);
-}
-
-.article-placeholder-num {
-  font-family: var(--font-mono);
-  font-size: 48px;
-  color: rgba(243, 242, 237, 0.03);
-}
 
 .article-meta {
   display: flex;

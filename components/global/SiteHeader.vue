@@ -12,6 +12,12 @@
             <img src="~/static/images/teamLogoMini.PNG">
           </div>
           <span class="logo-text">全域救援</span>
+          <img
+            v-if="$xcarEnabled()"
+            src="~/static/images/xcar.png"
+            alt="xcar"
+            class="logo-xcar"
+          />
         </NuxtLink>
       </div>
 
@@ -151,6 +157,13 @@ export default {
   font-weight: 700;
   letter-spacing: 0.05em;
   white-space: nowrap;
+}
+
+.logo-xcar {
+  height: 20px;
+  width: auto;
+  margin-left: 6px;
+  vertical-align: middle;
 }
 
 /* Status */

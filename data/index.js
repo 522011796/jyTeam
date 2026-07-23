@@ -15,7 +15,7 @@
 export const missions = [
   {
     "id": "055",
-    "date": "2026.04.08",
+    "date": "2026.04.09",
     "type": "城市搜救",
     "typeEn": "URBAN SEARCH",
     "timeline": {
@@ -147,7 +147,7 @@ export const people = [
     "role": "队长 / 高山向导",
     "background": "十五年登山经验，百岳完登",
     "unit": "01",
-    "joined": "2019",
+    "joined": "2026",
     "story": "「第一次参加搜救，山里下着雨，我们在泥泞中走了六个小时。找到那个人的时候，他哭了出来。那时候我明白了，我们做的事不是英雄主义，是让走丢的人能回家。」",
     "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop",
     "imageTheme": "terrain",
@@ -159,7 +159,8 @@ export const people = [
       "missions": [
         "058",
         "056",
-        "055"
+        "055",
+        "057"
       ],
       "quote": "「别人问我们为什么做这个。我说，因为有人需要。就这四个字。」"
     }
@@ -280,6 +281,28 @@ export const people = [
       ],
       "quote": "「大山不是我征服的东西。大山是我尊重的东西。」"
     }
+  },
+  {
+    "id": "p07",
+    "name": "阿水淀粉",
+    "nameEn": "",
+    "role": "阿沙发上大家疯狂拉升的看法快乐",
+    "background": "阿沙发上的法师大法师大",
+    "unit": "管理分队",
+    "joined": "阿沙发上",
+    "story": "阿沙发撒法师大法师地方 啊粉色的分身乏术大饭店",
+    "image": "/images/content/abc.jpeg",
+    "imageTheme": "night",
+    "detail": {
+      "bio": "阿上的法师大法师法师大法师发水淀粉",
+      "motivation": "阿沙发上法师大法师的法师大法师地方",
+      "specialties": "沙发上法师发水淀粉",
+      "equipment": "阿沙发上法师大法师发",
+      "missions": [
+        "58"
+      ],
+      "quote": "阿法师发水淀粉"
+    }
   }
 ]
 
@@ -295,7 +318,7 @@ export const capabilities = [
       "overview": "山区通信条件极端：深谷阻断 VHF 信号、密林衰减无线电波、偏远区域无手机覆盖。我们建立了三层通信体系——VHF 小队内通信、UHF 中继覆盖、卫星电话作为最终保底。",
       "gear": "Yaesu VX-6R 手持电台、Slim Jim 折叠天线、Iridium 9555 卫星电话、便携中继台、车载移动电台",
       "training": "每季度通信演练：在复杂地形中架设中继站，测试最远通信距离。每个队员都需掌握基本无线电操作和 NATO 音标字母。",
-      "scenario": "MISSION #057 中，溪水声几乎盖过了所有无线电通信。大山在制高点架设了临时中继天线，保证了前方搜救组和后方指挥部的实时联络，为夜间绳索横渡提供了关键的协调通道。"
+      "scenario": "关联任务 #058 山域搜救（南横山区）\n\n 城市搜救（旧城片区）\n\n溪水声几乎盖过了所有无线电通信。大山在制高点架设了临时中继天线，保证了前方搜救组和后方指挥部的实时联络，为夜间绳索横渡提供了关键的协调通道。"
     }
   },
   {
