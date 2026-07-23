@@ -125,14 +125,6 @@
                 <input class="form-input" type="text" v-model="form.location.name" placeholder="如 南横山区" />
               </div>
               <div class="form-group"><!-- spacer --></div>
-              <div class="form-group">
-                <label class="form-label">地图横坐标 (0—100)</label>
-                <input class="form-input" type="number" v-model.number="form.mapX" placeholder="48" min="0" max="100" />
-              </div>
-              <div class="form-group">
-                <label class="form-label">地图纵坐标 (0—100)</label>
-                <input class="form-input" type="number" v-model.number="form.mapY" placeholder="72" min="0" max="100" />
-              </div>
             </div>
 
             <div class="form-group" style="margin-top: 14px;">
@@ -248,8 +240,6 @@ export default {
         duration: '',
         members: 0,
         location: { name: '' },
-        mapX: 50,
-        mapY: 50,
         summary: '',
         imageTheme: 'mountain',
         timeline: {
@@ -302,8 +292,6 @@ export default {
         location: {
           name: mission.location ? (mission.location.name || '') : ''
         },
-        mapX: mission.mapX != null ? mission.mapX : 50,
-        mapY: mission.mapY != null ? mission.mapY : 50,
         summary: mission.summary || '',
         imageTheme: mission.imageTheme || 'mountain',
         timeline: {
@@ -347,8 +335,6 @@ export default {
         duration: '',
         members: 0,
         location: { name: '' },
-        mapX: 50,
-        mapY: 50,
         summary: '',
         imageTheme: 'mountain',
         timeline: { callReceived: '', deployed: '', located: '', returned: '' },
@@ -379,7 +365,6 @@ export default {
           id: this.form.id, date: this.form.date, type: this.form.type,
           typeEn: this.form.typeEn, status: this.form.status, duration: this.form.duration,
           members: this.form.members, location: { name: this.form.location.name },
-          mapX: this.form.mapX, mapY: this.form.mapY,
           summary: this.form.summary, imageTheme: this.form.imageTheme,
           timeline: {
             callReceived: this.form.timeline.callReceived,

@@ -30,8 +30,6 @@ export const missions = [
     "location": {
       "name": "旧城片区"
     },
-    "mapX": 22,
-    "mapY": 52,
     "summary": "老旧社区地震后部分建筑结构受损，一名独居老人失联。凌晨一时四十五分找到老人，生命体征稳定。",
     "imageTheme": "night",
     "detail": {
@@ -61,8 +59,6 @@ export const missions = [
     "location": {
       "name": "大雪山区域"
     },
-    "mapX": 44,
-    "mapY": 38,
     "summary": "三人队伍偏离预定路线，手机信号中断。分三路排查，下午两点二十分在溪谷中找到三人。",
     "imageTheme": "forest",
     "detail": {
@@ -92,8 +88,6 @@ export const missions = [
     "location": {
       "name": "中港溪流域"
     },
-    "mapX": 36,
-    "mapY": 28,
     "summary": "连续豪雨致溪水暴涨，一名钓客受困河心沙洲。夜间作业，靠无人机红外热成像定位目标。",
     "imageTheme": "rain",
     "detail": {
@@ -123,8 +117,6 @@ export const missions = [
     "location": {
       "name": "南横山区"
     },
-    "mapX": 48,
-    "mapY": 72,
     "summary": "两名登山客因午后浓雾偏离步道，在海拔 2,800 米处失联。搜索区域覆盖约 8 平方公里陡峭林带。",
     "imageTheme": "mountain",
     "detail": {

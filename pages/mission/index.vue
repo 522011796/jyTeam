@@ -68,7 +68,7 @@
                 </div>
                 <div class="entry-detail">
                   <span class="detail-value">{{ mission.location.name }}</span>
-                  <span class="detail-label">{{ $t('mission.map_title') }}</span>
+                  <span class="detail-label">{{ $t('mission.location') }}</span>
                 </div>
               </div>
 
@@ -78,32 +78,6 @@
             </NuxtLink>
           </div>
         </article>
-      </div>
-    </section>
-
-    <!-- 地图 -->
-    <section class="mission-map-full" ref="mapSection">
-      <h2 class="section-label" data-reveal>{{ $t('mission.map_title') }}</h2>
-      <div class="map-container" data-reveal>
-        <svg class="topo-map-large" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet">
-          <g class="contours-large" opacity="0.06">
-            <ellipse cx="400" cy="250" rx="360" ry="230" fill="none" stroke="#1A1A1A" stroke-width="0.5"/>
-            <ellipse cx="400" cy="250" rx="290" ry="185" fill="none" stroke="#1A1A1A" stroke-width="0.5"/>
-            <ellipse cx="400" cy="250" rx="220" ry="140" fill="none" stroke="#1A1A1A" stroke-width="0.5"/>
-            <ellipse cx="400" cy="250" rx="150" ry="90" fill="none" stroke="#1A1A1A" stroke-width="0.5"/>
-            <ellipse cx="400" cy="250" rx="80" ry="45" fill="none" stroke="#1A1A1A" stroke-width="0.5"/>
-          </g>
-          <g class="terrain-large" opacity="0.04">
-            <path d="M0,320 Q120,180 240,300 Q360,420 480,240 Q600,110 720,280 Q780,350 800,300" fill="none" stroke="#1A1A1A" stroke-width="1"/>
-            <path d="M0,370 Q150,230 280,340 Q400,450 500,300 Q620,180 740,320 Q770,350 800,330" fill="none" stroke="#1A1A1A" stroke-width="0.8"/>
-            <path d="M0,420 Q200,280 320,380 Q420,470 520,350 Q640,240 760,370 Q780,390 800,380" fill="none" stroke="#1A1A1A" stroke-width="0.6"/>
-          </g>
-          <g class="markers-large">
-            <circle v-for="(p, i) in mapDots" :key="i" :cx="p.x" :cy="p.y" r="3" fill="#1A1A1A" opacity="0.4">
-              <animate attributeName="opacity" values="0.15;0.5;0.15" dur="2.5s" repeatCount="indefinite" :begin="`${i * 0.4}s`"/>
-            </circle>
-          </g>
-        </svg>
       </div>
     </section>
   </div>
@@ -118,11 +92,7 @@ export default {
   components: { RescueImage },
   data() {
     return {
-      missions,
-      mapDots: Array.from({ length: 17 }, () => ({
-        x: 100 + Math.random() * 600,
-        y: 80 + Math.random() * 340
-      }))
+      missions
     }
   },
   mounted() {
@@ -352,25 +322,6 @@ export default {
   margin-top: 2px;
 }
 
-/* Map */
-.mission-map-full {
-  padding: var(--space-2xl) var(--space-xl) var(--space-4xl);
-  max-width: var(--container-max);
-  margin: 0 auto;
-}
-
-.map-container {
-  background: var(--color-bg-alt);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.topo-map-large {
-  width: 100%;
-  height: auto;
-  max-height: 400px;
-}
-
 @media (max-width: 640px) {
   .mission-page {
     padding-top: 60px;
@@ -381,10 +332,6 @@ export default {
   }
 
   .mission-timeline-full {
-    padding: var(--space-xl) var(--space-md);
-  }
-
-  .mission-map-full {
     padding: var(--space-xl) var(--space-md);
   }
 

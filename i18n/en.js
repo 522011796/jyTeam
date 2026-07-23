@@ -32,8 +32,6 @@ export default {
     days_ready: 'Days on Standby',
     mission_title: 'MISSION',
     mission_sub: 'Mission Log',
-    map_title: 'MISSION MAP',
-    map_sub: 'Where We\'ve Been',
     people_title: 'THE PEOPLE',
     people_sub: 'We are not heroes. We simply chose to go when others needed us.',
     people_zh: 'DIFFERENT PEOPLE. SAME CALL.',
@@ -72,7 +70,7 @@ export default {
     status: 'Status',
     active: 'Active',
     done: 'Completed',
-    map_title: 'MISSION MAP'
+    location: 'Location'
   },
   people: {
     title: 'THE PEOPLE',

@@ -35,7 +35,27 @@
 
     <!-- 网站设置 -->
     <div class="settings-section">
-      <h3 class="section-title">网站设置</h3>
+      <h3 class="section-title">网站设置(皮肤主题)</h3>
+
+      <!-- 皮肤主题 -->
+      <div class="theme-grid">
+        <button
+          v-for="t in themes"
+          :key="t.key"
+          class="theme-card"
+          :class="{ active: currentTheme === t.key }"
+          @click="selectTheme(t.key)"
+        >
+          <span class="theme-preview">
+            <span class="theme-swatch" :style="{ background: t.preview[0] }"></span>
+            <span class="theme-swatch" :style="{ background: t.preview[1] }"></span>
+          </span>
+          <span class="theme-name">{{ t.name }}</span>
+          <span class="theme-label">{{ t.label }}</span>
+        </button>
+      </div>
+
+      <!-- Xcar 开关 -->
       <div class="dashboard-settings">
         <span class="settings-label">Xcar 标识</span>
         <span class="settings-note">网站页头旁显示 xcar.png</span>
@@ -63,18 +83,26 @@ export default {
       people,
       capabilities,
       journalEntries,
-      xcarOn: false
+      xcarOn: false,
+      themes: [],
+      currentTheme: 'default'
     }
   },
   mounted() {
     if (process.client) {
       this.xcarOn = localStorage.getItem('xcar_enabled') === 'true'
+      this.themes = this.$themes
+      this.currentTheme = this.$theme()
     }
   },
   methods: {
     toggleXcar() {
       this.xcarOn = !this.xcarOn
       this.$toggleXcar(this.xcarOn)
+    },
+    selectTheme(key) {
+      this.currentTheme = key
+      this.$setTheme(key)
     }
   }
 }
@@ -190,6 +218,68 @@ export default {
   margin-bottom: 14px;
 }
 
+/* Theme picker */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.theme-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #e8e5df;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+  text-align: left;
+  min-width: 0;
+}
+
+.theme-card:hover {
+  border-color: #c8b896;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.theme-card.active {
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 2px rgba(26,26,26,0.08);
+}
+
+.theme-preview {
+  display: flex;
+  gap: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100%;
+  height: 36px;
+}
+
+.theme-swatch {
+  flex: 1;
+  height: 100%;
+}
+
+.theme-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  white-space: nowrap;
+}
+
+.theme-label {
+  font-size: 11px;
+  color: #aaa;
+  white-space: nowrap;
+}
+
+/* Xcar toggle */
+
 .dashboard-settings {
   display: flex;
   align-items: center;
@@ -258,6 +348,10 @@ export default {
 
   .card-stat {
     font-size: 26px;
+  }
+
+  .theme-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .dashboard-settings {

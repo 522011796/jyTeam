@@ -17,8 +17,6 @@ members: ※ 参与人数
 status: completed
 location:
   name: ※ 地点名称
-mapX: ※ 地图横坐标 0-100
-mapY: ※ 地图纵坐标 0-100
 summary: ※ 一句话任务概述
 imageTheme: mountain / forest / rain / night / terrain / portrait
 ---

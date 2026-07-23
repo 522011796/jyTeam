@@ -35,7 +35,8 @@ export default {
   plugins: [
     '@/plugins/gsap',
     '@/plugins/api',
-    '@/plugins/xcar'
+    '@/plugins/xcar',
+    '@/plugins/theme'
   ],
 
   modules: [

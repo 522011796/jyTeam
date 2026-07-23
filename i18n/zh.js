@@ -32,8 +32,6 @@ export default {
     days_ready: '天保持准备',
     mission_title: 'MISSION',
     mission_sub: '行动记录',
-    map_title: 'MISSION MAP',
-    map_sub: '我们到过的地方',
     people_title: 'THE PEOPLE',
     people_sub: '我们不是英雄。我们只是，在别人需要的时候，选择了出发。',
     people_zh: '不同的人。同一个选择。',
@@ -72,7 +70,7 @@ export default {
     status: '状态',
     active: '进行中',
     done: '已完成',
-    map_title: 'MISSION MAP'
+    location: '任务地点'
   },
   people: {
     title: 'THE PEOPLE',

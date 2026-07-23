@@ -3,7 +3,6 @@
     <HeroSection />
     <StatusBarSection />
     <MissionTimelineSection />
-    <MissionMapSection />
     <PeopleSection />
     <FieldSection />
     <JournalPreviewSection />
@@ -15,7 +14,6 @@
 import HeroSection from '@/components/home/HeroSection.vue'
 import StatusBarSection from '@/components/home/StatusBar.vue'
 import MissionTimelineSection from '@/components/home/MissionTimeline.vue'
-import MissionMapSection from '@/components/home/MissionMap.vue'
 import PeopleSection from '@/components/home/PeopleSection.vue'
 import FieldSection from '@/components/home/FieldSection.vue'
 import JournalPreviewSection from '@/components/home/JournalPreview.vue'
@@ -27,7 +25,6 @@ export default {
     HeroSection,
     StatusBarSection,
     MissionTimelineSection,
-    MissionMapSection,
     PeopleSection,
     FieldSection,
     JournalPreviewSection,

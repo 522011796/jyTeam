@@ -149,8 +149,6 @@ const CONTENT_GENERATORS = {
       members: data.members || 0,
       status: data.status || 'completed',
       location: data.location || { name: '' },
-      mapX: data.mapX,
-      mapY: data.mapY,
       summary: data.summary || '',
       imageTheme: data.imageTheme || 'mountain'
     }

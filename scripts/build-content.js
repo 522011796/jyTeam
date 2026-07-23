@@ -348,8 +348,6 @@ function handleMission(fm, body) {
     members: fm.members || 0,
     status: fm.status || 'completed',
     location: fm.location || { name: '' },
-    mapX: fm.mapX != null ? fm.mapX : (fm.location && fm.location.mapX) || 50,
-    mapY: fm.mapY != null ? fm.mapY : (fm.location && fm.location.mapY) || 50,
     summary: fm.summary || '',
     imageTheme: fm.imageTheme || 'mountain',
     detail

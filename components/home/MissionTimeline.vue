@@ -2,46 +2,45 @@
   <section class="mission-wrap" ref="section">
     <div class="mission-section">
       <div class="mission-header" data-reveal>
-        <span class="section-tag">MISSION</span>
-        <h2 class="section-title">{{ $t('home.mission_sub') }}</h2>
+        <span class="section-tag">{{ $t('home.mission_title') }}</span>
+        <blockquote class="mission-quote">
+          {{ $t('home.mission_sub') }}
+        </blockquote>
       </div>
 
-      <div class="mission-timeline" ref="timeline">
-        <div
+      <div class="mission-grid" ref="grid">
+        <NuxtLink
           v-for="(mission, index) in missions"
           :key="mission.id"
-          class="timeline-item"
+          :to="`/mission/${mission.id}`"
+          class="mission-card"
           :data-reveal="true"
+          :style="{ '--delay': `${index * 0.1}s` }"
         >
-          <div class="timeline-marker">
-            <span class="marker-dot"></span>
-            <span class="marker-line"></span>
+          <div class="mission-image">
+            <RescueImage :theme="mission.imageTheme || 'mountain'" />
           </div>
-
-          <div class="timeline-content">
-            <NuxtLink :to="`/mission/${mission.id}`" class="timeline-content-link">
-              <div class="timeline-meta">
-                <span class="meta-date">{{ mission.date }}</span>
-                <span class="meta-id">MISSION #{{ mission.id }}</span>
+          <div class="mission-info">
+            <div class="mission-meta">
+              <span class="mission-type">{{ mission.type }}</span>
+              <span class="mission-id">MISSION #{{ mission.id }}</span>
+            </div>
+            <div class="mission-steps">
+              <div class="step" v-for="(time, key) in mission.timeline" :key="key">
+                <span class="step-time">{{ time }}</span>
+                <span class="step-label">{{ stepLabels[key] }}</span>
               </div>
-
-              <h3 class="timeline-type">{{ mission.type }}</h3>
-
-              <div class="timeline-steps">
-                <div class="step" v-for="(time, key) in mission.timeline" :key="key">
-                  <span class="step-time">{{ time }}</span>
-                  <span class="step-label">{{ stepLabels[key] }}</span>
-                </div>
-              </div>
-
-              <div class="timeline-footer">
-                <span class="timeline-duration">{{ mission.duration }}</span>
-                <span class="timeline-members">{{ mission.members }} 人</span>
-                <span class="timeline-status completed">● {{ $t('home.completed') }}</span>
-              </div>
-            </NuxtLink>
+            </div>
+            <div class="mission-footer-row">
+              <span class="mission-date">{{ mission.date }}</span>
+              <span class="mission-detail">{{ mission.duration }} · {{ mission.members }} 人</span>
+            </div>
           </div>
-        </div>
+        </NuxtLink>
+      </div>
+
+      <div class="mission-bottom" data-reveal>
+        <p class="mission-bottom-text">{{ missions.length }} 次行动，仍在继续</p>
       </div>
 
       <div class="mission-cta" data-reveal>
@@ -55,9 +54,11 @@
 
 <script>
 import { missions } from '@/data'
+import RescueImage from '@/components/global/RescueImage.vue'
 
 export default {
   name: 'MissionTimelineSection',
+  components: { RescueImage },
   data() {
     return {
       missions: missions.filter(m => m.highlight).concat(missions.filter(m => !m.highlight)).slice(0, 3)
@@ -79,12 +80,14 @@ export default {
   methods: {
     setupReveal() {
       if (!process.client) return
-      const reveals = this.$refs.section.querySelectorAll('[data-reveal]')
-      reveals.forEach((el) => {
-        this.$ScrollTrigger.create({
-          trigger: el,
-          start: 'top 85%',
-          onEnter: () => el.classList.add('is-visible')
+      this.$nextTick(() => {
+        const reveals = this.$refs.section.querySelectorAll('[data-reveal]')
+        reveals.forEach((el) => {
+          this.$ScrollTrigger.create({
+            trigger: el,
+            start: 'top 85%',
+            onEnter: () => el.classList.add('is-visible')
+          })
         })
       })
     }
@@ -93,126 +96,109 @@ export default {
 </script>
 
 <style scoped>
-/* 外层全宽容器 */
+/* 外层全宽 */
 .mission-wrap {
   width: 100%;
-  background: var(--color-bg);
+  background: var(--color-bg-alt);
   border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
-/* 内层居中容器 */
+/* 内层居中 */
 .mission-section {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: var(--space-4xl) var(--space-xl);
 }
 
-.section-tag {
-  font-family: var(--font-mono);
-  font-size: 10px;
+.mission-header {
+  max-width: var(--container-max);
+  margin: 0 auto var(--space-2xl);
+  padding: 0 var(--space-xl);
+}
+
+
+
+.mission-quote {
+  font-size: clamp(18px, 2.5vw, 26px);
   font-weight: 500;
-  letter-spacing: 0.15em;
-  color: var(--color-accent);
+  line-height: 1.6;
+  color: var(--color-text);
+  max-width: 700px;
+  margin-top: var(--space-md);
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.mission-card {
+  opacity: 0;
   display: block;
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-out-expo),
+              transform 0.8s var(--ease-out-expo);
+  transition-delay: var(--delay, 0s);
+}
+
+.mission-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mission-image {
+  aspect-ratio: 3 / 4;
+  background: var(--color-bg-card);
+  margin-bottom: var(--space-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+.mission-card:hover .mission-image {
+  transform: scale(1.02);
+  transition: transform 600ms var(--ease-out-expo);
+}
+
+.mission-info {
+  padding: 0 var(--space-sm);
+}
+
+.mission-meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
   margin-bottom: var(--space-md);
 }
 
-.section-title {
-  font-family: var(--font-en);
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: var(--space-2xl);
-}
-
-.mission-timeline {
-  position: relative;
-  margin-bottom: var(--space-2xl);
-}
-
-.timeline-item {
-  display: flex;
-  gap: var(--space-xl);
-  padding-bottom: var(--space-2xl);
-  position: relative;
-}
-
-.timeline-item:last-child .marker-line {
-  display: none;
-}
-
-.timeline-marker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
-  width: 20px;
-}
-
-.marker-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  flex-shrink: 0;
-  margin-top: 8px;
-}
-
-.marker-line {
-  width: 1px;
-  flex: 1;
-  background: var(--color-border-light);
-  margin-top: var(--space-sm);
-}
-
-.timeline-content {
-  flex: 1;
-  padding-bottom: var(--space-xl);
-  border-bottom: 1px solid var(--color-border);
-}
-.timeline-content-link { text-decoration: none; color: inherit; display: block; }
-.timeline-content-link:hover .timeline-type { color: var(--color-text-muted); transition: color 300ms ease; }
-
-.timeline-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-sm);
-}
-
-.meta-date {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--color-text-muted);
-}
-
-.meta-id {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--color-accent);
-  letter-spacing: 0.05em;
-}
-
-.timeline-type {
-  font-family: var(--font-zh);
-  font-size: 28px;
+.mission-type {
+  font-size: 20px;
   font-weight: 600;
   color: var(--color-text);
-  margin-bottom: var(--space-lg);
 }
 
-.timeline-steps {
+.mission-id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-dim);
+  letter-spacing: 0.1em;
+}
+
+.mission-steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 .step-time {
   display: block;
   font-family: var(--font-mono);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-text);
   margin-bottom: 2px;
@@ -224,36 +210,38 @@ export default {
   color: var(--color-text-dim);
 }
 
-.timeline-footer {
+.mission-footer-row {
   display: flex;
-  align-items: center;
-  gap: var(--space-lg);
+  align-items: baseline;
+  gap: var(--space-md);
 }
 
-.timeline-duration {
+.mission-date {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--color-text-muted);
 }
 
-.timeline-members {
-  font-size: 13px;
+.mission-detail {
+  font-size: 12px;
   color: var(--color-text-muted);
 }
 
-.timeline-status {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+.mission-bottom {
+  text-align: center;
 }
 
-.timeline-status.completed {
+.mission-bottom-text {
+  font-family: var(--font-en);
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
   color: var(--color-text-dim);
 }
 
 .mission-cta {
   text-align: center;
+  margin-top: var(--space-xl);
 }
 
 .cta-link {
@@ -270,18 +258,28 @@ export default {
   color: var(--color-accent);
 }
 
+@media (max-width: 1024px) {
+  .mission-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 640px) {
   .mission-section {
     padding: var(--space-2xl) var(--space-md);
   }
 
-  .timeline-steps {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-sm);
+  .mission-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
   }
 
-  .timeline-type {
-    font-size: 22px;
+  .mission-image {
+    aspect-ratio: 16 / 10;
+  }
+
+  .mission-steps {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>
